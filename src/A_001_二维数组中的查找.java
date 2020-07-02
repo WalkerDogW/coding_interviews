@@ -6,31 +6,23 @@
  */
 public class A_001_二维数组中的查找 {
     public static  boolean Find(int target, int [][] array) {
-        //空
-        if(array == null || array.length==0 || array[0] == null || array[0].length==0){
+        if(array==null) {
             return false;
         }
 
         //左下角
-        int row = array.length-1;
-        int column = 0;
-        System.out.println(array.length+" "+array[0].length);
-
-        while(target != array[row][column]){
-            System.out.println(array[row][column]+"  "+row+"  "+column);
-            if(target > array[row][column]){
-                column++;
-            }else if(target < array[row][column]){
-                row--;
-            }else {
+        int row=array.length-1;
+        int col=0;
+        while(row >=0 && col< array[0].length) {
+            if(target == array[row][col]) {
                 return true;
-            }
-
-            if(row < 0 || (column>array[0].length-1)){
-                return false;
+            }else if(target < array[row][col]) {
+                row = row-1;
+            }else {
+                col = col+1;
             }
         }
-        return true;
+        return false;
     }
 
     public static void main(String[] args) {
